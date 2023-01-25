@@ -25,7 +25,7 @@ func (g *Group) RunAndWait(ctx context.Context) error {
 	runCtx, cancel := context.WithCancel(ctx)
 	defer cancel()
 
-	// Collecting errors from all jobs until all of them are down
+	// Collecting errors until all the jobs are down
 	errChan := make(chan error)
 	wgErr := sync.WaitGroup{}
 	wgErr.Add(1)
@@ -58,7 +58,7 @@ func (g *Group) RunAndWait(ctx context.Context) error {
 	// Waiting until all jobs are finished
 	wgRun.Wait()
 
-	// Everyone who could send write to channel are down, we cal safely close it
+	// Everyone who could write to channel are down now, we can safely close the channel
 	close(errChan)
 
 	// Terminating error-collecting routine
