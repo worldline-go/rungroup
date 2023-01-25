@@ -9,7 +9,7 @@ Because of this:
 
 ## How to use it?
 
-You can find a working example [here](./rungroup_test.go#L51).
+You can find a working example [here](./rungroup_test.go#L50-L81).
 
 `rungroup` runs jobs in a separate go routine each. 
 When one of the jobs returns, `rungroup` cancels a context and waits until all jobs are finished.
